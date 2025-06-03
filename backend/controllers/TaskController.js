@@ -1,4 +1,4 @@
-import { request, response } from "express";
+import { request, response } from "express"; //*importacion para tener las funciones de ayuda
 import Tasks from "../data/tareas.js";
 
 function get(req, res = response) {
@@ -33,6 +33,29 @@ function post(req = request, res = response) {
   }
 }
 
+function put(req = request, res = response) {
+  try {
+    const { id } = req.params;
+    const { title, description, completed } = req.body;
+    const index = Tasks.findIndex((t) => t.id === id);
+    console.log(id);
+    console.log(req.body);
+
+    if (index === -1) {
+      res.status(404).json({ msg: "Tarea no encontrada" });
+    }
+
+    if (title !== undefined) Tasks[index].title = title;
+    if (description !== undefined) Tasks[index].description = description;
+    if (completed !== undefined) Tasks[index].completed = Boolean(completed);
+
+    res.json(Tasks[index]);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ msg: "Error No se actulizo la tarea" });
+  }
+}
+
 function generarId(task = Tasks) {
   let ids = [];
   task.forEach((element) => {
@@ -44,6 +67,7 @@ function generarId(task = Tasks) {
 const task = {
   get,
   post,
+  put,
 };
 
 export default task;

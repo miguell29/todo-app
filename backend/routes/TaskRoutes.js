@@ -6,11 +6,9 @@ router.get("/", task.get);
 
 router.post("/", task.post);
 
-router.put("/", (req, res) => {
-  res.json({ msg: "ok" });
-});
+router.put("/:id", task.put);
 
-router.delete("/", (req, res) => {
+router.delete("/:id", (req, res) => {
   res.json({ msg: "ok" });
 });
 
