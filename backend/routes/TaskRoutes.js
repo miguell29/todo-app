@@ -1,12 +1,10 @@
 import { Router } from "express";
-import usuario from "../controllers/TaskController.js";
+import task from "../controllers/TaskController.js";
 const router = Router();
 
-router.get("/", usuario.get);
+router.get("/", task.get);
 
-router.post("/", (req, res) => {
-  res.json({ msg: "ok" });
-});
+router.post("/", task.post);
 
 router.put("/", (req, res) => {
   res.json({ msg: "ok" });

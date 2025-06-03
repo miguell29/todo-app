@@ -6,6 +6,7 @@ export default class Server {
     this.app = express();
     this.PORT = process.env.PORT || 3000;
     this.taskPath = "/api/task";
+    this.middleware();
     this.routes();
   }
 
@@ -17,5 +18,8 @@ export default class Server {
 
   routes() {
     this.app.use(this.taskPath, router);
+  }
+  middleware() {
+    this.app.use(express.json());
   }
 }
