@@ -2,14 +2,12 @@ import { Router } from "express";
 import task from "../controllers/TaskController.js";
 const router = Router();
 
-router.get("/", task.get);
+router.get("/", task.Get);
 
-router.post("/", task.post);
+router.post("/", task.Post);
 
-router.put("/:id", task.put);
+router.put("/:id", task.Put);
 
-router.delete("/:id", (req, res) => {
-  res.json({ msg: "ok" });
-});
+router.delete("/:id", task.Delete);
 
 export default router;

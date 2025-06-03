@@ -1,7 +1,7 @@
 import { request, response } from "express"; //*importacion para tener las funciones de ayuda
 import Tasks from "../data/tareas.js";
 
-function get(req, res = response) {
+function Get(req, res = response) {
   try {
     res.json(Tasks);
   } catch (e) {
@@ -12,7 +12,7 @@ function get(req, res = response) {
   }
 }
 
-function post(req = request, res = response) {
+function Post(req = request, res = response) {
   try {
     const { title, description } = req.body;
     if (!title) {
@@ -33,7 +33,7 @@ function post(req = request, res = response) {
   }
 }
 
-function put(req = request, res = response) {
+function Put(req = request, res = response) {
   try {
     const { id } = req.params;
     const { title, description, completed } = req.body;
@@ -41,9 +41,7 @@ function put(req = request, res = response) {
     console.log(id);
     console.log(req.body);
 
-    if (index === -1) {
-      res.status(404).json({ msg: "Tarea no encontrada" });
-    }
+    if (index === -1) res.status(404).json({ msg: "Tarea no encontrada" });
 
     if (title !== undefined) Tasks[index].title = title;
     if (description !== undefined) Tasks[index].description = description;
@@ -56,6 +54,21 @@ function put(req = request, res = response) {
   }
 }
 
+function Delete(req = request, res = response) {
+  try {
+    const { id } = req.params;
+    const index = Tasks.findIndex((t) => t.id === id);
+    if (index === -1) res.status(404).json({ msj: "Tarea no encontrada" });
+    Tasks.splice(index, 1);
+    res.status(204).send();
+  } catch (e) {
+    console.log(e);
+    res
+      .status(500)
+      .json({ msg: "Error interno no se pudo eliminar el archivo" });
+  }
+}
+
 function generarId(task = Tasks) {
   let ids = [];
   task.forEach((element) => {
@@ -65,9 +78,10 @@ function generarId(task = Tasks) {
 }
 
 const task = {
-  get,
-  post,
-  put,
+  Get,
+  Post,
+  Put,
+  Delete,
 };
 
 export default task;
