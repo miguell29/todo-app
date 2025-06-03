@@ -1,0 +1,81 @@
+const Tasks = [
+  {
+    id: "1",
+    title: "Comprar víveres",
+    description: "Leche, pan, huevos y fruta para la semana.",
+    completed: false,
+    createdAt: new Date("2024-07-20T09:00:00Z"),
+  },
+  {
+    id: "2",
+    title: "Llamar al fontanero",
+    description: "Revisar la fuga en el grifo de la cocina.",
+    completed: false,
+    createdAt: new Date("2024-07-21T11:30:00Z"),
+  },
+  {
+    id: "3",
+    title: "Leer capítulo 5 del libro",
+    description: "Continuar con 'Cien años de soledad'.",
+    completed: true,
+    createdAt: new Date("2024-07-19T15:00:00Z"),
+  },
+  {
+    id: "4",
+    title: "Hacer ejercicio",
+    description: "Sesión de cardio de 30 minutos.",
+    completed: true,
+    createdAt: new Date("2024-07-22T07:00:00Z"),
+  },
+  {
+    id: "5",
+    title: "Pagar la factura de internet",
+    description: "Vence el día 25 de este mes.",
+    completed: false,
+    createdAt: new Date("2024-07-18T10:00:00Z"),
+  },
+  {
+    id: "6",
+    title: "Planificar las vacaciones de verano",
+    description: "Investigar destinos y presupuestos.",
+    completed: false,
+    createdAt: new Date("2024-07-15T14:20:00Z"),
+  },
+  {
+    id: "7",
+    title: "Limpiar el garaje",
+    description: "Organizar herramientas y desechar objetos innecesarios.",
+    completed: false,
+    createdAt: new Date("2024-07-22T16:00:00Z"),
+  },
+  {
+    id: "8",
+    title: "Estudiar para el examen de inglés",
+    description: "Repasar los verbos irregulares y el vocabulario.",
+    completed: true,
+    createdAt: new Date("2024-07-17T18:45:00Z"),
+  },
+  {
+    id: "9",
+    title: "Preparar la cena",
+    description: "Hacer lasaña según la receta de la abuela.",
+    completed: false,
+    createdAt: new Date("2024-07-22T19:00:00Z"),
+  },
+  {
+    id: "10",
+    title: "Regar las plantas",
+    description: "Revisar la humedad de la tierra y regar si es necesario.",
+    completed: true,
+    createdAt: new Date("2024-07-20T08:15:00Z"),
+  },
+  {
+    id: "11",
+    title: "Sacar la basura",
+    description: "Los martes y viernes por la noche.",
+    completed: false,
+    createdAt: new Date("2024-07-22T20:30:00Z"),
+  },
+];
+
+export default Tasks;
