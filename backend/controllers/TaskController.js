@@ -23,8 +23,9 @@ function Post(req = request, res = response) {
       title,
       description: description || "",
       completed: false,
-      createdAT: new Date(),
+      createdAt: new Date(),
     };
+    
     Tasks.push(newTask);
     res.status(201).json(newTask);
   } catch (e) {
