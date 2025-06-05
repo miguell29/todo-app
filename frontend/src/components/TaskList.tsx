@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import type { ITask } from "../Interfaces/ITask";
 import { Col, Row, Container, Table, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import type { ITask } from "../Interfaces/ITask";
 
 
 export const TaskList = () => {
@@ -18,8 +19,22 @@ export const TaskList = () => {
         }
     }
 
-    const deleteTask = (id: string) => {
-        console.log(id);
+    const deleteTask = (id: string | undefined) => {
+        if (id == undefined) return
+        Swal.fire({
+            title: "¿Esta seguro?",
+            text: "Eliminar Tarea!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si, Eliminar!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/${id}`,{method:"DELETE"});
+                if(res.ok) await getTasks()
+            }
+          });
         
     }
 
