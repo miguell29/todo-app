@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/TaskList" element={<TaskList/>}></Route>
-          <Route path="/TaskItem" element={<TaskItem/>}></Route>
+          <Route path="/TaskItem/:id" element={<TaskItem/>}></Route>
           <Route path="/TaskForm" element={<TaskForm/>}></Route>
           <Route path="*" element={<TaskList/>}></Route>
         </Routes>

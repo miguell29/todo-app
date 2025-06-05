@@ -11,6 +11,19 @@ function Get(req, res = response) {
       .json({ message: "Error no se pudo obtener la informacion" });
   }
 }
+function GetById(req = request, res = response) {
+  try {
+    const { id } = req.params;
+    const task = Tasks.find((t) => t.id === id);
+    if (!task) {
+      return res.status(404).json({ msg: "Tarea no encontrada" });
+    }
+    res.json(task);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ msg: "Error al obtener la tarea" });
+  }
+}
 
 function Post(req = request, res = response) {
   try {
@@ -80,6 +93,7 @@ function generarId(task = Tasks) {
 
 const task = {
   Get,
+  GetById,
   Post,
   Put,
   Delete,
