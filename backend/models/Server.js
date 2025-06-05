@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import router from "../routes/TaskRoutes.js";
 
 export default class Server {
@@ -21,5 +22,6 @@ export default class Server {
   }
   middleware() {
     this.app.use(express.json());
+    this.app.use(cors());
   }
 }
