@@ -37,7 +37,7 @@ cd todo-app
 
 ### 2. Configurar variables de entorno
 
-- Copia el archivo `.env.example` a `.env` tanto en `backend/` como en `frontend/` y ajusta los valores si es necesario.
+- copiar el contenido de  los archivos `.env.example` a `.env ` y `.env.local ` tanto en `backend/` como en `frontend/` respectivamente y ajustar los valores si es necesario.
 
 ### 3. Instalar dependencias
 
