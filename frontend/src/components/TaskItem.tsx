@@ -15,7 +15,7 @@ export const TaskItem = () => {
     const { id } = useParams()
     const navigate = useNavigate();
 
-    const { task } = useGetTask(id)
+    const { task } = useGetTask(id);
     return (
         <>
             <Container>

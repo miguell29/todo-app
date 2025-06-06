@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent } from "react"
 import type { ITask } from "../Interfaces/ITask"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap"
 import { useSaveTask } from "../hooks/data"
 
@@ -15,21 +15,17 @@ const initialTask: ITask = {
 
 export const TaskForm = () => {
     //*Seccion crear nueva tarea
-    const [task, setTask] = useState<ITask>(initialTask)
+    const [tarea, setTarea] = useState<ITask>(initialTask)
     const navigate = useNavigate();
     const createTask = (e: ChangeEvent<HTMLInputElement>) => {
         const inputName = e.target.name;
         const inputValue = e.target.value;
-        setTask({ ...task, [inputName]: inputValue });
+        setTarea({ ...tarea, [inputName]: inputValue });
     }
     const guardar = useSaveTask;
     const volver = () => { navigate("/") };
     
-    //*seccion modificar tarea
-    const {id} = useParams();
-    if (id) {
-        console.log(id);
-    }
+
 
     return (
         <Container>
@@ -40,17 +36,19 @@ export const TaskForm = () => {
                     <Form>
                         <FormGroup>
                             <Label>Titulo</Label>
-                            <Input type="text" name="title" onChange={createTask}></Input>
+                            <Input type="text" name="title" onChange={createTask} ></Input>
                         </FormGroup>
                         <FormGroup>
                             <Label>Descipcion</Label>
-                            <Input type="text" name="description" onChange={createTask}></Input>
+                            <Input type="text" name="description" onChange={createTask} ></Input>
                         </FormGroup>
                     </Form>
+                    
                     <div className="text-end mt-5">
-                        <Button color="primary" className="me-3" onClick={() => {guardar(task,navigate)}}>Guardar</Button>
+                        <Button color="primary" className="me-3" onClick={() => { guardar(tarea, navigate) }}>Guardar</Button>
                         <Button color="secondary" onClick={volver}>Volver</Button>
                     </div>
+
                 </Col>
             </Row>
         </Container>

@@ -28,6 +28,7 @@ export const useGetTask = (id: string | undefined) => {
 
   return {
     task,
+    setTask
   };
 };
 
@@ -74,4 +75,21 @@ export const useSaveTask = async (
   }
 };
 
-
+export const useEditTask = async (id:string | undefined, task:ITask, navigate: (path: string) => void) => {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+  if (res.ok) {
+    navigate("/");
+  } else {
+    Swal.fire({
+      title: "Error!!",
+      text: "No se pudo editar la tarea",
+      icon: "warning",
+    });
+  }
+};
