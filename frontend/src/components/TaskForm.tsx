@@ -1,8 +1,8 @@
 import { useState, type ChangeEvent } from "react"
 import type { ITask } from "../Interfaces/ITask"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Button, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap"
-import Swal from "sweetalert2"
+import { useSaveTask } from "../hooks/data"
 
 
 const initialTask: ITask = {
@@ -14,33 +14,21 @@ const initialTask: ITask = {
 }
 
 export const TaskForm = () => {
-
+    //*Seccion crear nueva tarea
     const [task, setTask] = useState<ITask>(initialTask)
     const navigate = useNavigate();
     const createTask = (e: ChangeEvent<HTMLInputElement>) => {
-
         const inputName = e.target.name;
         const inputValue = e.target.value;
         setTask({ ...task, [inputName]: inputValue });
     }
+    const guardar = useSaveTask;
     const volver = () => { navigate("/") };
-    const guardar = async () => {
-        const res = await fetch(`${import.meta.env.VITE_API_URL}`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(task)
-        })
-        if (res.ok) {
-            navigate('/');
-        } else {
-            Swal.fire({
-                title: "Error!",
-                text: "No se pudo crear la Tarea",
-                icon: "warning"
-            })
-        }
+    
+    //*seccion modificar tarea
+    const {id} = useParams();
+    if (id) {
+        console.log(id);
     }
 
     return (
@@ -60,7 +48,7 @@ export const TaskForm = () => {
                         </FormGroup>
                     </Form>
                     <div className="text-end mt-5">
-                        <Button color="primary" className="me-3" onClick={guardar}>Guardar</Button>
+                        <Button color="primary" className="me-3" onClick={() => {guardar(task,navigate)}}>Guardar</Button>
                         <Button color="secondary" onClick={volver}>Volver</Button>
                     </div>
                 </Col>
