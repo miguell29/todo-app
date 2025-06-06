@@ -19,7 +19,6 @@ export const useGetTask = (id: string | undefined) => {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/${id}`);
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
         setTask(data);
       }
     };
@@ -40,7 +39,6 @@ export const useGetTasks = () => {
     if (res.ok) {
       const data = await res.json();
       setTasks(data);
-      console.log(data);
     }
   };
   useEffect(() => {

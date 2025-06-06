@@ -24,7 +24,7 @@ export const TaskEditForm = () => {
         <Container>
             <Row>
                 <Col sm={{ size: 8, offset: 2 }}>
-                    <h4 className="mt-5">Nueva Tarea</h4>
+                    <h4 className="mt-5">Editar Tarea</h4>
                     <hr className="mb-5" />
                     <Form>
                         <FormGroup>
